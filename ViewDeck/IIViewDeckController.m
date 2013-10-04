@@ -500,7 +500,9 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 }
 
 - (CGFloat)statusBarHeight {
-    return UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) 
+    return 0;
+    
+    return UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)
     ? [UIApplication sharedApplication].statusBarFrame.size.width 
     : [UIApplication sharedApplication].statusBarFrame.size.height;
 }
@@ -509,7 +511,9 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
     if (self.navigationControllerBehavior == IIViewDeckNavigationControllerContained)
         return self.referenceBounds;
     
-    return II_CGRectShrink(self.referenceBounds, 0, [self relativeStatusBarHeight] + (self.navigationController.navigationBarHidden ? 0 : self.navigationController.navigationBar.frame.size.height));
+    return CGRectMake(0, 0, 768, 1024);
+    
+//    return II_CGRectShrink(self.referenceBounds, 0, [self relativeStatusBarHeight] + (self.navigationController.navigationBarHidden ? 0 : self.navigationController.navigationBar.frame.size.height));
 }
 
 - (CGRect)sideViewBounds {
@@ -915,7 +919,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
             [self setSlidingFrameForOffset:_offset forOrientation:_offsetOrientation animated:YES];
             self.slidingControllerView.hidden = NO;
             
-            self.centerView.frame = self.centerViewBounds;
+            self.centerView.frame = CGRectMake(0, 0, 768, 1024);
             self.centerController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             self.centerController.view.frame = self.centerView.bounds;
             [self doForControllers:^(UIViewController* controller, IIViewDeckSide side) {
